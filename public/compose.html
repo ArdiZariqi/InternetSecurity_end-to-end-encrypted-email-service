@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compose Email</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Compose Email</h1>
+        <div id="compose">
+            <input type="text" id="to" placeholder="To"><br>
+            <input type="text" id="subject" placeholder="Subject"><br>
+            <textarea id="body" placeholder="Write your email here"></textarea><br>
+            <button onclick="sendEmail()">Send Email</button>
+        </div>
+        <div id="inbox">
+            <h2>Inbox</h2>
+            <div id="emails"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
