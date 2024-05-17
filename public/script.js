@@ -12,6 +12,7 @@ function register() {
         if (data.success) {
             alert('Registration successful');
             window.location.href = '/login.html';
+            loadEmails();
         } else {
             alert('Registration failed');
         }
@@ -36,6 +37,31 @@ function login() {
             
         } else {
             alert('Login failed');
+        }
+    });
+}
+
+function sendEmail() {
+    const token = localStorage.getItem('token');
+    const to = document.getElementById('to').value;
+    const subject = document.getElementById('subject').value;
+    const body = document.getElementById('body').value;
+
+    fetch('/api/emails', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ to, subject, body })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Email sent successfully');
+            loadEmails();
+        } else {
+            alert('Failed to send email');
         }
     });
 }
