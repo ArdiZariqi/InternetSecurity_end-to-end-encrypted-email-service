@@ -20,7 +20,7 @@ app.use((err, req, res, next) => {
 
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/register.html');
+    res.sendFile(__dirname + '/public/login.html');
 });
 
 app.listen(PORT, () => {
