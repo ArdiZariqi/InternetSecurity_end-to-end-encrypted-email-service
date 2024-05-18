@@ -1,5 +1,7 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const userRoutes = require('./src/routes/userRoutes');
+const mailRoutes = require('./src/routes/mailRoutes');
 const createUserTable = require('./src/models/userModel');
 const createMailTable = require('./src/models/mailModel');
 require('dotenv').config();
@@ -9,6 +11,10 @@ const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
+
+
+app.use('/api/users', userRoutes);
+app.use('/api/emails', mailRoutes);
 
 createUserTable();
 createMailTable();

@@ -1,11 +1,14 @@
 const db = require('../config/db');
+const { encryptEmailBody, decryptEmailBody } = require('../utils/crypto');
 
 exports.sendEmail = (req, res) => {
     const { to, subject, body } = req.body;
     const fromUserEmail = req.user.email;
+    const encryptedBody = encryptEmailBody(body);
+    const encryptedSubject = encryptEmailBody(subject);
 
     const sql = 'INSERT INTO emails (fromUserEmail, toUserEmail, subject, body) VALUES (?, ?, ?, ?)';
-    db.query(sql, [fromUserEmail, to, subject, body], (err, result) => {
+    db.query(sql, [fromUserEmail, to, encryptedSubject, encryptedBody], (err, result) => {
         if (err) {
             console.error('Error sending email:', err);
             return res.status(500).send({ message: 'Failed to send email' });
