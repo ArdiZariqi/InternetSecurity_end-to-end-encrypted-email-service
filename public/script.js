@@ -34,11 +34,36 @@ function login() {
             localStorage.setItem('token', data.token);
             alert('Login successful');
             window.location.href = '/compose.html';
+            loadEmails();
             
         } else {
             alert('Login failed');
         }
     });
+}
+
+function loadEmails() {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+        fetch('/api/emails', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const emailsDiv = document.getElementById('emails');
+            emailsDiv.innerHTML = '';
+            data.emails.forEach(email => {
+                const emailElement = document.createElement('div');
+                emailElement.className = 'email';
+                emailElement.innerHTML = `<strong>Date:</strong> ${email.created_at}<br></br><strong>From:</strong> ${email.fromUserEmail}<br><strong>Subject:</strong> ${email.subject}<br><p>${email.body}</p>`;
+                emailsDiv.appendChild(emailElement);
+            });
+        });
+    }
 }
 
 function sendEmail() {
