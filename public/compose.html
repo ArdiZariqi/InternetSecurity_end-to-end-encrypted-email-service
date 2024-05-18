@@ -6,7 +6,7 @@
     <title>Compose Email</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="loadEmails()">
     <div id="app">
         <h1>Compose Email</h1>
         <div id="compose">
@@ -19,6 +19,13 @@
             <h2>Inbox</h2>
             <div id="emails"></div>
         </div>
+        <button id="logoutButton">Logout</button>
+        <script>
+        function logout() {
+        window.location.href = "login.html";
+        }
+        document.getElementById("logoutButton").addEventListener("click", logout);
+        </script>
     </div>
     <script src="script.js"></script>
 </body>

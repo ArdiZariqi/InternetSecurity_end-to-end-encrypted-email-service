@@ -1,5 +1,9 @@
 const bcrypt = require('bcrypt');
+const crypto = require('crypto');
 require('dotenv').config();
+
+const key = crypto.scryptSync(process.env.ENCRYPTION_KEY, 'salt', 32); 
+const iv = Buffer.alloc(16, 0); 
 
 const encryptPassword = (password) => {
     const salt = bcrypt.genSaltSync(10);
