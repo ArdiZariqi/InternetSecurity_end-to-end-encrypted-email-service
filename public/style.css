@@ -1,54 +1,142 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #F5F5F5;
     margin: 0;
     padding: 0;
+    color: #212121;
 }
 
 #app {
-    width: 50%;
+    width: 90%;
+    max-width: 600px;
     margin: 50px auto;
-    background-color: #fff;
+    background-color: #FFFFFF;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-h1, h2 {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
     text-align: center;
 }
 
+img.logo {
+    width: 200px; 
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #0066CC;
+    font-size: 28px; 
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #0066CC;
+    font-size: 22px; 
+    margin-bottom: 10px;
+}
+
 input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ddd;
+    width: calc(100% - 22px);
+    padding: 15px; 
+    margin: 10px 0;
+    border: 1px solid #DDD;
     border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: #FAFAFA;
+}
+
+textarea {
+    height: 150px; 
+    resize: none;
 }
 
 button {
-    width: 100%;
-    padding: 10px;
+    width: 100%; 
+    padding: 10px; 
     margin: 10px 0;
-    background-color: #007BFF;
+    background-color: #0066CC;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 14px; 
+    font-weight: bold;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #004999;
 }
 
-#compose, #inbox {
-    margin-top: 20px;
+#compose button, #logoutButton, #sendEmailButton, #login button, #register button {
+    width: 100%;
+    max-width: 150px; 
+    margin: 10px auto; 
+    padding: 10px; 
 }
 
 .email {
-    border: 1px solid #ddd;
+    border: 1px solid #DDD;
     padding: 10px;
     margin: 10px 0;
     border-radius: 4px;
-    background-color: #f9f9f9;
+    background-color: #FAFAFA;
+    text-align: left;
+}
+
+
+@media (max-width: 768px) {
+    #app {
+        width: 100%;
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    img.logo {
+        width: 150px; 
+    }
+
+    h1, h2 {
+        font-size: 20px; 
+    }
+
+    input, textarea, button {
+        padding: 10px; 
+    }
+}
+
+
+.dark-mode {
+    background-color: #333;
+    color: white;
+}
+
+.dark-mode input, .dark-mode textarea, .dark-mode button {
+    background-color: #444;
+    color: white;
+}
+
+.dark-mode .email {
+    background-color: #555;
+}
+
+
+a {
+    color: #0066CC;
+}
+
+a:hover {
+    color: #004999;
+}
+
+
+#login, #register {
+    text-align: center;
+}
+
+#login button, #register button {
+    display: block;
+    width: 100%;
+    max-width: 150px;
+    margin: 10px auto;
+    padding: 10px; 
 }

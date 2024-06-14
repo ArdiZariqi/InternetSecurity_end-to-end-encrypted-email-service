@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,14 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Encrypted Email Service</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="app">
+        <img src="UNIpr.png" alt="Logo" class="logo">
         <h1>Encrypted Email Service</h1>
         <div id="login">
             <h2>Login</h2>
-            <input type="text" id="username" placeholder="Username">
+            <input type="text" id="username" placeholder="Email">
+            <span id="emailError" class="error"></span>
             <input type="password" id="password" placeholder="Password">
+            <span id="passwordError" class="error"></span>
             <button onclick="login()">Login</button>
             <p>Don't have an account? <a href="register.html">Register now!</a></p>
         </div>

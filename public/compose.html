@@ -8,12 +8,13 @@
 </head>
 <body onload="loadEmails()">
     <div id="app">
+        <img src="UNIpr.png" alt="Logo" class="logo">
         <h1>Compose Email</h1>
         <div id="compose">
             <input type="text" id="to" placeholder="To"><br>
             <input type="text" id="subject" placeholder="Subject"><br>
             <textarea id="body" placeholder="Write your email here"></textarea><br>
-            <button onclick="sendEmail()">Send Email</button>
+            <button id="sendEmailButton" onclick="sendEmail()">Send Email</button>
         </div>
         <div id="inbox">
             <h2>Inbox</h2>
@@ -22,7 +23,7 @@
         <button id="logoutButton">Logout</button>
         <script>
         function logout() {
-        window.location.href = "login.html";
+            window.location.href = "login.html";
         }
         document.getElementById("logoutButton").addEventListener("click", logout);
         </script>

@@ -1,6 +1,17 @@
+document.addEventListener('DOMContentLoaded', (event) => {
+
+    document.getElementById('password').addEventListener('input', function() {
+        validatePassword(this.value);
+    });
+});
+
 function register() {
     const email = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+
+    if (!validateEmail(email) || !validatePassword(password)) {
+        return;
+    }
 
     fetch('/api/users/register', {
         method: 'POST',
@@ -10,11 +21,11 @@ function register() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('Registration successful');
+            //alert('Registration successful');
             window.location.href = '/login.html';
-            loadEmails();
         } else {
-            alert('Registration failed');
+            //alert('Registration failed');
+            console.error('Registration failed');
         }
     });
 }
@@ -22,6 +33,10 @@ function register() {
 function login() {
     const email = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+
+    if (!validateEmail(email) || !validatePassword(password)) {
+        return;
+    }
 
     fetch('/api/users/login', {
         method: 'POST',
@@ -32,14 +47,36 @@ function login() {
     .then(data => {
         if (data.token) {
             localStorage.setItem('token', data.token);
-            alert('Login successful');
+           // alert('Login successful');
             window.location.href = '/compose.html';
-            loadEmails();
-            
         } else {
-            alert('Login failed');
+           // alert('Login failed');
+          console.error('Login failed');
         }
     });
+}
+
+function validateEmail(email) {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    const emailError = document.getElementById('emailError');
+    if (!emailPattern.test(email)) {
+        emailError.textContent = 'Please enter a valid email address.';
+        return false;
+    } else {
+        emailError.textContent = '';
+        return true;
+    }
+}
+
+function validatePassword(password) {
+    const passwordError = document.getElementById('passwordError');
+    if (password.length < 8) {
+        passwordError.textContent = 'Password must be at least 8 characters long.';
+        return false;
+    } else {
+        passwordError.textContent = '';
+        return true;
+    }
 }
 
 function loadEmails() {
@@ -59,7 +96,12 @@ function loadEmails() {
             data.emails.forEach(email => {
                 const emailElement = document.createElement('div');
                 emailElement.className = 'email';
-                emailElement.innerHTML = `<strong>Date:</strong> ${email.created_at}<br></br><strong>From:</strong> ${email.fromUserEmail}<br><strong>Subject:</strong> ${email.subject}<br><p>${email.body}</p>`;
+                emailElement.innerHTML = `
+                    <strong>Date:</strong> ${email.created_at}<br>
+                    <strong>From:</strong> ${email.fromUserEmail}<br>
+                    <strong>Subject:</strong> ${email.subject}<br>
+                    <p>${email.body}</p>
+                `;
                 emailsDiv.appendChild(emailElement);
             });
         });
@@ -90,3 +132,10 @@ function sendEmail() {
         }
     });
 }
+
+
+function logout() {
+    window.location.href = "login.html";
+}
+
+document.getElementById("logoutButton").addEventListener("click", logout);
